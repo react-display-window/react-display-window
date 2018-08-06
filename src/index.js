@@ -1,7 +1,7 @@
-import path from 'path';
-import serve from 'webpack-serve';
+const path = require('path');
+const serve = require('webpack-serve');
 
-import buildConfig from '../webpack.config.js';
+const buildConfig = require('../webpack.config.js');
 
 
 export async function main(args={}) {

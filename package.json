@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "clean": "rimraf dist/",
-    "build": "BABEL_ENV=node babel src --out-dir dist"
+    "build": "babel src --out-dir lib"
   },
   "bin": {
     "rdw": "bin/cli.js"
@@ -46,6 +46,8 @@
     "@mdx-js/mdx": "^0.15.0-2",
     "@mdx-js/tag": "^0.15.0-2",
     "ansi-escapes": "^3.1.0",
+    "aphrodite-jss": "^2.1.0",
+    "classnames": "^2.2.6",
     "dedent": "^0.7.0",
     "fast-glob": "^2.2.2",
     "fs-extra": "^7.0.0",

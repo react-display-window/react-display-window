@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const meow = require('meow');
 
-const { main } = require('../dist');
+const { main } = require('../lib');
 
 
 const cli = meow(`

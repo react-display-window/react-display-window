@@ -35,6 +35,7 @@ module.exports = async ({ runningIn, docName, docDir }) => {
       ],
     },
     entry: [
+      'modern-normalize/modern-normalize.css',
       path.join(__dirname, './app/index.js'),
     ],
     output: {
@@ -71,6 +72,10 @@ module.exports = async ({ runningIn, docName, docDir }) => {
           test: /\.jsx?$/,
           exclude: /node_modules/,
           use: [ { loader: 'babel-loader', options: babelConfig } ],
+        },
+        {
+          test: /\.css/,
+          use: [ 'style-loader', 'css-loader' ],
         },
         {
           test: /\.mdx?$/,
