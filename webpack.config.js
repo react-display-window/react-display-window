@@ -1,130 +1,86 @@
 const path = require('path');
 const webpack = require('webpack');
+const HTMLPlugin = require('html-webpack-plugin');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const ProgressPlugin = require('webpack/lib/ProgressPlugin');
 const betterWebpackProgress = require('better-webpack-progress');
 const initialMessage = require('initial-app-message');
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
-const HTMLPlugin = require('html-webpack-plugin');
-const checkEnv = require('@drawbotics/check-env');
-const dotenv = require('dotenv');
+
+const babelConfig = require('./.babelrc.js');
 
 
-dotenv.config();
+const WEBPACK_PORT = 5000;
 
 
-const WEBPACK_PORT = 4000;
-
-
-module.exports = {
-  mode: 'development',
-  devtool: 'cheap-module-source-map',
-  resolve: {
-    extensions: [ '.js', '.jsx', '.less' ],
-    alias: {
-      '@root': path.resolve(__dirname, 'app'),
+module.exports = async ({ runningIn, docName, docDir }) => {
+  return {
+    mode: 'development',
+    devtool: 'cheap-module-source-map',
+    stats: 'errors-only',
+    resolve: {
+      extensions: [ '.js', '.jsx', '.less' ],
+      alias: {
+        '~': path.resolve(__dirname, 'app'),
+        'webpack-hot-client/client': path.dirname(require.resolve('webpack-hot-client/client'))
+      },
+      modules: [
+        'node_modules',
+      ],
     },
-  },
-  entry: [
-    'modern-normalize/modern-normalize.css',
-    './app/index.js',
-  ],
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: '/',
-    filename: 'bundle.js',
-    sourceMapFilename: 'bundle.js.map',
-  },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.NamedModulesPlugin(),
-    new webpack.EnvironmentPlugin({
-      APP_ENV: process.env.APP_ENV,
-      NODE_ENV: process.env.NODE_ENV,
-    }),
-    new ProgressPlugin(betterWebpackProgress({
-      mode: 'compact',
-    })),
-    new FriendlyErrorsWebpackPlugin({
-      clearConsole: true,
-      compilationSuccessInfo: {
-        messages: initialMessage(WEBPACK_PORT, [
-        ]),
-      },
-    }),
-    new HTMLPlugin({
-      filename: 'index.html',
-      template: 'app/index.html',
-    }),
-  ],
-  module: {
-    rules: [
-      {
-        test: /\.jsx?/,
-        include: [
-          path.resolve(__dirname, 'app'),
-        ],
-        use: [
-          {
-            loader: 'babel-loader',
-          },
-        ],
-      },
-      {
-        test: /\.css/,
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              localIdentName: '[name]__[local]--[hash:base64:5]',
-            },
-          },
-        ],
-      },
-      {
-        test: /\.less/,
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              localIdentName: '[name]__[local]--[hash:base64:5]',
-            },
-          },
-          {
-            loader: 'less-loader',
-          },
-        ],
-      },
-      {
-        test: /\.(jpg|png|ico|svg|gif)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: 'images/[name]-[hash].[ext]',
-            },
-          },
-        ],
-      },
+    entry: [
+      path.join(__dirname, './app/index.js'),
     ],
-  },
-  devServer: {
-    host: '0.0.0.0',
-    port: WEBPACK_PORT,
-    publicPath: '/',
-    inline: true,
-    hot: true,
-    stats: false,
-    quiet: true,
-    noInfo: true,
-    clientLogLevel: 'none',
-    overlay: true,
-    historyApiFallback: true,
-  },
+    output: {
+      path: path.resolve(__dirname, 'dist'),
+      publicPath: '/',
+      filename: 'rdw.js',
+      sourceMapFilename: 'rdw.js.map',
+    },
+    plugins: [
+      new webpack.NoEmitOnErrorsPlugin(),
+      new webpack.NamedModulesPlugin(),
+      new ProgressPlugin(betterWebpackProgress({ mode: 'compact' })),
+      new webpack.EnvironmentPlugin({
+        NODE_ENV: 'development',
+        DOC_PATH: docDir + '/' + docName,
+      }),
+      new HTMLPlugin({
+        filename: 'index.html',
+        template: path.resolve(__dirname, './app/index.html'),
+      }),
+      // new FriendlyErrorsWebpackPlugin({
+      //   clearConsole: true,
+      //   compilationSuccessInfo: {
+      //     messages: initialMessage(WEBPACK_PORT, [
+      //     ]),
+      //   },
+      // }),
+    ],
+    module: {
+      rules: [
+        {
+          test: /\.jsx?$/,
+          exclude: /node_modules/,
+          use: [ { loader: 'babel-loader', options: babelConfig } ],
+        },
+        {
+          test: /\.mdx?$/,
+          exclude: /node_modules/,
+          use: [ { loader: 'babel-loader', options: babelConfig }, '@mdx-js/loader' ],
+        },
+      ],
+    },
+    serve: {
+      host: '0.0.0.0',
+      port: WEBPACK_PORT,
+      logLevel: 'error',
+      stats: 'errors-only',
+      devMiddleware: {
+        logLevel: 'error',
+      },
+      hotClient: {
+        logLevel: 'error',
+      },
+    },
+  };
 };

@@ -9,4 +9,9 @@ module.exports = {
     }],
     ["@babel/preset-react"],
   ],
+  "env": {
+    "node": {
+      "plugins": ["@babel/plugin-transform-modules-commonjs"]
+    },
+  },
 };
