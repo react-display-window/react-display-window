@@ -1,4 +1,16 @@
 import sobj from 'stringify-object';
+// import prettier from 'prettier/standalone';
+
+
+function improveCurly(str) {
+  if (str.startsWith('{')) {
+    str = '{ ' + str.slice(1);
+  }
+  if (str.endsWith('}')) {
+    str = str.slice(0, -1) + ' }';
+  }
+  return str;
+}
 
 
 function getLevelIndentation(level) {
@@ -23,8 +35,11 @@ function renderStringProp(prop) {
 
 function renderObjectProp(prop) {
   const [ key, value ] = prop;
-  const valueStr = sobj(value, { indent: '  ', inlineCharacterLimit: 50 }).slice(1, -1);
-  return `${key}={{ ${valueStr} }}`;
+  if (value === true) {
+    return key;
+  }
+  const valueStr = improveCurly(sobj(value, { indent: '  ', inlineCharacterLimit: 50 }));
+  return `${key}={${valueStr}}`;
 }
 
 
@@ -50,6 +65,7 @@ function renderWithChildren(element, level) {
 
 
 function renderWithoutChildren(element, level) {
+  const { props } = element;
   const type = getType(element);
   const indentation = getLevelIndentation(level);
   if ( ! type) {
@@ -58,7 +74,7 @@ function renderWithoutChildren(element, level) {
     ];
   }
   return [
-    `${indentation}<${type} />`,
+    `${indentation}<${type}${renderProps(props)} />`,
   ];
 }
 
@@ -75,5 +91,13 @@ function renderNode(element, level) {
 
 
 export default function toJsxString(element) {
-  return renderNode(element, 0).map((l, i, a) => i != a.length - 1 ? l + '\n' : l).join('');
+  const code = renderNode(element, 0).map((l, i, a) => i != a.length - 1 ? l + '\n' : l).join('');
+  return prettier.format(code, {
+    semi: false,
+    jsxBracketSameLine: true,
+    singleQuote: true,
+    trailingComma: 'all',
+    arrowParens: 'always',
+    parser: window.prettierPlugins.babylon.parsers.babylon.parse,
+  }).slice(1).trim();
 }

@@ -5,39 +5,28 @@ import { StyleSheet, css } from 'aphrodite-jss';
 
 import toJsxString from '../utils/to-jsx-string';
 
-import 'highlightjs/styles/atom-one-dark.css';
+import 'highlightjs/styles/foundation.css';
 
 
 const styles = StyleSheet.create({
   playGround: {
     display: 'flex',
     flexDirection: 'column',
-    marginBottom: 30,
-    border: '1px solid #ddd',
-  },
-  title: {
-    textTransform: 'uppercase',
-    fontSize: '0.85em',
-    color: 'rgba(0, 0, 0, 0.6)',
-    padding: '0 16px',
-    margin: 0,
-    background: '#eee',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    margin: '30px 0',
+    borderRadius: 5,
+    border: '1px solid rgba(0, 0, 0, 0.15)',
+    overflow: 'hidden',
   },
   renderZone: {
-    background: 'white',
-    border: '1px solid #ddd',
-    borderLeft: 0,
-    borderRight: 0,
     padding: '32px 16px',
+    borderBottom: '1px solid rgba(0, 0, 0, 0.15)',
   },
   sourceZone: {
     width: '100%',
     margin: 0,
     '& .Code': {
       margin: 0,
+      padding: '24px 16px',
     },
   },
 });
@@ -56,11 +45,7 @@ class PlayGround extends React.Component {
   };
 
   componentDidMount() {
-    hljs.initHighlightingOnLoad();
-  }
-
-  componentDidUpdate() {
-    hljs.initHighlightingOnLoad();
+    hljs.initHighlighting();
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -80,15 +65,12 @@ class PlayGround extends React.Component {
     const { code } = this.state;
     return (
       <div className={css(styles.playGround)}>
-        <div className={css(styles.title)}>
-          <h3>Example</h3>
-        </div>
         <div className={css(styles.renderZone)}>
           {children}
         </div>
         <div className={css(styles.sourceZone)}>
           <pre className={cn(css(styles.source), 'Code', 'hljs')}>
-            <code className="xml">
+            <code className="react">
               {code}
             </code>
           </pre>
