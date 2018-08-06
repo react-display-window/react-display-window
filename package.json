@@ -28,7 +28,7 @@
     "friendly-errors-webpack-plugin": "1.7.0",
     "handlebars": "^4.0.11",
     "html-webpack-plugin": "3.2.0",
-    "initial-app-message": "1.0.0",
+    "initial-app-message": "^1.1.2",
     "less": "^3.8.0",
     "less-loader": "^4.1.0",
     "nodemon": "^1.18.3",
@@ -45,14 +45,17 @@
     "@babel/polyfill": "7.0.0-beta.51",
     "@mdx-js/mdx": "^0.15.0-2",
     "@mdx-js/tag": "^0.15.0-2",
+    "ansi-escapes": "^3.1.0",
     "dedent": "^0.7.0",
     "fast-glob": "^2.2.2",
     "fs-extra": "^7.0.0",
     "highlightjs": "^9.10.0",
     "meow": "^5.0.0",
     "modern-normalize": "0.5.0",
+    "progress-bar-webpack-plugin": "^1.11.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
+    "react-hot-loader": "^4.3.4",
     "remark-frontmatter": "^1.2.0",
     "remark-parse": "^5.0.0",
     "remark-parse-yaml": "0.0.1",
@@ -61,6 +64,7 @@
     "stringify-object": "^3.2.2",
     "styled-components": "^3.3.3",
     "unified": "^7.0.0",
-    "webpack-serve": "^2.0.2"
+    "webpack-serve": "^2.0.2",
+    "webpackbar": "^2.6.1"
   }
 }

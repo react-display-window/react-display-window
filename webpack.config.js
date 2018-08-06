@@ -5,6 +5,10 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const ProgressPlugin = require('webpack/lib/ProgressPlugin');
 const betterWebpackProgress = require('better-webpack-progress');
 const initialMessage = require('initial-app-message');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const chalk = require('chalk');
+const figures = require('figures');
+const ansiEscapes = require('ansi-escapes');
 
 const babelConfig = require('./.babelrc.js');
 
@@ -13,6 +17,8 @@ const WEBPACK_PORT = 5000;
 
 
 module.exports = async ({ runningIn, docName, docDir }) => {
+  const { green, grey, bold } = chalk;
+  console.log(bold('Starting webpack...'));
   return {
     mode: 'development',
     devtool: 'cheap-module-source-map',
@@ -24,6 +30,7 @@ module.exports = async ({ runningIn, docName, docDir }) => {
         'webpack-hot-client/client': path.dirname(require.resolve('webpack-hot-client/client'))
       },
       modules: [
+        path.resolve(__dirname, './node_modules'),
         'node_modules',
       ],
     },
@@ -39,7 +46,6 @@ module.exports = async ({ runningIn, docName, docDir }) => {
     plugins: [
       new webpack.NoEmitOnErrorsPlugin(),
       new webpack.NamedModulesPlugin(),
-      new ProgressPlugin(betterWebpackProgress({ mode: 'compact' })),
       new webpack.EnvironmentPlugin({
         NODE_ENV: 'development',
         DOC_PATH: docDir + '/' + docName,
@@ -48,13 +54,16 @@ module.exports = async ({ runningIn, docName, docDir }) => {
         filename: 'index.html',
         template: path.resolve(__dirname, './app/index.html'),
       }),
-      // new FriendlyErrorsWebpackPlugin({
-      //   clearConsole: true,
-      //   compilationSuccessInfo: {
-      //     messages: initialMessage(WEBPACK_PORT, [
-      //     ]),
-      //   },
-      // }),
+      new ProgressBarPlugin({
+        incomplete: grey('─'),
+        complete: green('═'),
+        format: `${bold('Building')}  :bar  ${green(':percent')} ${grey(figures.arrowRight + ' :msg')}`,
+        summary: false,
+        customSummary: () => {
+          process.stdout.write(ansiEscapes.clearScreen);
+          process.stdout.write(initialMessage(WEBPACK_PORT, []).join('\n'));
+        },
+      }),
     ],
     module: {
       rules: [
