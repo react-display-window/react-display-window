@@ -1,5 +1,4 @@
 import sobj from 'stringify-object';
-// import prettier from 'prettier/standalone';
 
 
 function improveCurly(str) {
@@ -38,6 +37,7 @@ function renderObjectProp(prop) {
   if (value === true) {
     return key;
   }
+  console.log(value);
   const valueStr = improveCurly(sobj(value, { indent: '  ', inlineCharacterLimit: 50 }));
   return `${key}={${valueStr}}`;
 }
@@ -92,7 +92,8 @@ function renderNode(element, level) {
 
 export default function toJsxString(element) {
   const code = renderNode(element, 0).map((l, i, a) => i != a.length - 1 ? l + '\n' : l).join('');
-  return prettier.format(code, {
+  return code;
+  return window.prettier.format(code, {
     semi: false,
     jsxBracketSameLine: true,
     singleQuote: true,

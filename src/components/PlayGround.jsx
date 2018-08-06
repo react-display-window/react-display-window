@@ -48,17 +48,17 @@ class PlayGround extends React.Component {
     hljs.initHighlighting();
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    const { children } = nextProps;
-    const { prevComputedCode } = prevState;
-    const code = getCode(children);
+  // static getDerivedStateFromProps(nextProps, prevState) {
+    // const { children } = nextProps;
+    // const { prevComputedCode } = prevState;
+    // const code = getCode(children);
 
-    if (prevComputedCode === code) {
-      return null;
-    }
+    // if (prevComputedCode === code) {
+    //   return null;
+    // }
 
-    return { code, prevComputedCode: code };
-  }
+    // return { code, prevComputedCode: code };
+  // }
 
   render() {
     const { children } = this.props;
@@ -71,7 +71,7 @@ class PlayGround extends React.Component {
         <div className={css(styles.sourceZone)}>
           <pre className={cn(css(styles.source), 'Code', 'hljs')}>
             <code className="react">
-              {code}
+              {children}
             </code>
           </pre>
         </div>
