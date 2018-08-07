@@ -2,7 +2,7 @@ require('@babel/polyfill');
 const path = require('path');
 const serve = require('webpack-serve');
 
-const buildConfig = require('../webpack.config.js');
+const buildConfig = require('./webpack.config.js');
 
 
 module.exports.main = async function main(args={}) {
@@ -13,9 +13,7 @@ module.exports.main = async function main(args={}) {
   const docName = path.basename(finalDocPath);
   const docDir = path.dirname(finalDocPath)
 
-  process.chdir(path.resolve(__dirname, '../'));
-
-  // Try with a babel-plugin? for PlayGround?
+  process.chdir(path.resolve(__dirname, '../../'));
 
   const config = await buildConfig({ runningIn, docName, docDir });
   serve({}, { config });

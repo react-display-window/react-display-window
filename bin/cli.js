@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const meow = require('meow');
 
-const { main } = require('../lib');
+const { main } = require('../lib/cli');
 
 
 const cli = meow(`
@@ -10,7 +10,6 @@ const cli = meow(`
 
   Options
     --out-dir, -o Where to output the files when building
-    --watch, -w Watch files and recompile
     --help Show this help
 
   Examples

@@ -7,8 +7,8 @@ const chalk = require('chalk');
 const figures = require('figures');
 const ansiEscapes = require('ansi-escapes');
 
-const babelConfig = require('./.babelrc.js');
-const rehypePlayground = require('./src/utils/rehype-playground');
+const babelConfig = require('../../.babelrc');
+const rehypePlayground = require('./utils/rehype-playground');
 
 
 const WEBPACK_PORT = 5000;
@@ -22,19 +22,18 @@ module.exports = async ({ runningIn, docName, docDir }) => {
     devtool: 'cheap-module-source-map',
     stats: 'errors-only',
     resolve: {
-      extensions: [ '.js', '.jsx', '.less' ],
+      extensions: [ '.js', '.jsx' ],
       alias: {
-        '~': path.resolve(__dirname, 'app'),
         'webpack-hot-client/client': path.dirname(require.resolve('webpack-hot-client/client'))
       },
       modules: [
-        path.resolve(__dirname, './node_modules'),
-        path.resolve(runningIn, './node_modules'),
+        path.resolve(__dirname, '../../node_modules'),
+        path.resolve(runningIn, 'node_modules'),
       ],
     },
     entry: [
       'modern-normalize/modern-normalize.css',
-      path.join(__dirname, './app/index.js'),
+      path.join(__dirname, '../../app/index.js'),
     ],
     output: {
       path: path.resolve(__dirname, 'dist'),
@@ -51,7 +50,7 @@ module.exports = async ({ runningIn, docName, docDir }) => {
       }),
       new HTMLPlugin({
         filename: 'index.html',
-        template: path.resolve(__dirname, './app/index.html'),
+        template: path.resolve(__dirname, '../../app/index.html'),
       }),
       new ProgressBarPlugin({
         incomplete: grey('─'),

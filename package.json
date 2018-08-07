@@ -7,8 +7,7 @@
   "main": "dist/rdw.js",
   "scripts": {
     "clean": "rimraf dist/",
-    "build": "BABEL_ENV=node babel src --out-dir lib",
-    "build:browser": "babel src/components/* --out-dir lib/components"
+    "build": "babel src --out-dir lib"
   },
   "bin": {
     "rdw": "bin/cli.js"
