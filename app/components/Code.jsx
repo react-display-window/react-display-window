@@ -12,7 +12,7 @@ import 'codemirror/theme/material.css';
 
 
 const styles = StyleSheet.create({
-  editor: {
+  code: {
     overflow: 'hidden',
     borderRadius: 5,
     '& .CodeMirror': {
@@ -26,22 +26,22 @@ const styles = StyleSheet.create({
 });
 
 
-class Editor extends React.Component {
+class Code extends React.Component {
 
   componentDidMount() {
     const { children } = this.props;
-    this.editor = CodeMirror.fromTextArea(this.textarea, {
+    this.code = CodeMirror.fromTextArea(this.textarea, {
       lineNumbers: false,
       mode: 'bash',
       theme: 'material',
       readOnly: 'nocursor',
     });
-    this.editor.getDoc().setValue(children.trim());
+    this.code.getDoc().setValue(children.trim());
   }
 
   render() {
     return (
-      <div className={css(styles.editor)}>
+      <div className={css(styles.code)}>
         <textarea ref={(ref) => this.textarea = ref} />
       </div>
     );
@@ -50,4 +50,4 @@ class Editor extends React.Component {
 }
 
 
-export default Editor;
+export default Code;

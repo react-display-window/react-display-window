@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import Editor from '../components/Editor';
+import Code from '../components/Code';
 
 
 const H1 = styled.h1`
@@ -26,18 +26,9 @@ const H2 = styled.h2`
 `
 
 
-const Code = styled(Editor)`
-  border-radius: 5px;
-  overflow: hidden;
-  padding: 24px 16px !important;
-  font-size: 0.9em;
-  height: auto;
-`;
-
-
 export default {
   h1: H1,
   h2: H2,
   p: P,
-  code: Editor,
+  code: Code,
 };
