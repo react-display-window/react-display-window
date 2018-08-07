@@ -14,6 +14,8 @@ export async function main(args={}) {
 
   process.chdir(path.resolve(__dirname, '../'));
 
+  // Try with a babel-plugin? for PlayGround?
+
   const config = await buildConfig({ runningIn, docName, docDir });
   serve({}, { config });
 }

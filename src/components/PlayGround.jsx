@@ -1,11 +1,5 @@
 import React from 'react';
-import cn from 'classnames';
-import hljs from 'highlightjs';
 import { StyleSheet, css } from 'aphrodite-jss';
-
-import toJsxString from '../utils/to-jsx-string';
-
-import 'highlightjs/styles/foundation.css';
 
 
 const styles = StyleSheet.create({
@@ -45,7 +39,6 @@ class PlayGround extends React.Component {
   };
 
   componentDidMount() {
-    hljs.initHighlighting();
   }
 
   // static getDerivedStateFromProps(nextProps, prevState) {
@@ -63,15 +56,15 @@ class PlayGround extends React.Component {
   render() {
     const { children } = this.props;
     const { code } = this.state;
+    console.log(this.props.__code);
     return (
       <div className={css(styles.playGround)}>
         <div className={css(styles.renderZone)}>
           {children}
         </div>
         <div className={css(styles.sourceZone)}>
-          <pre className={cn(css(styles.source), 'Code', 'hljs')}>
+          <pre className={css(styles.source)}>
             <code className="react">
-              {children}
             </code>
           </pre>
         </div>

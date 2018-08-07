@@ -4,9 +4,11 @@
   "description": "A simple react component showcase",
   "author": "Lorenzo Ruiz <lars.bs@hotmail.com>",
   "license": "MIT",
+  "main": "dist/rdw.js",
   "scripts": {
     "clean": "rimraf dist/",
-    "build": "babel src --out-dir lib"
+    "build": "BABEL_ENV=node babel src --out-dir lib",
+    "build:browser": "babel src/components/* --out-dir lib/components"
   },
   "bin": {
     "rdw": "bin/cli.js"
@@ -47,13 +49,18 @@
     "@mdx-js/tag": "^0.15.0-2",
     "ansi-escapes": "^3.1.0",
     "aphrodite-jss": "^2.1.0",
+    "babel-traverse": "^6.26.0",
+    "babylon": "^6.18.0",
     "classnames": "^2.2.6",
     "dedent": "^0.7.0",
     "fast-glob": "^2.2.2",
     "fs-extra": "^7.0.0",
+    "hast-util-to-string": "^1.0.1",
     "highlightjs": "^9.10.0",
+    "lodash": "^4.17.10",
     "meow": "^5.0.0",
     "modern-normalize": "0.5.0",
+    "prettier": "^1.14.0",
     "progress-bar-webpack-plugin": "^1.11.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
@@ -64,6 +71,7 @@
     "remark-slug": "^5.0.0",
     "serve-handler": "^3.6.1",
     "stringify-object": "^3.2.2",
+    "strip-indent": "^2.0.0",
     "styled-components": "^3.3.3",
     "unified": "^7.0.0",
     "webpack-serve": "^2.0.2",

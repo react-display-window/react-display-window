@@ -11,6 +11,7 @@ const figures = require('figures');
 const ansiEscapes = require('ansi-escapes');
 
 const babelConfig = require('./.babelrc.js');
+const rehypePlayground = require('./src/utils/rehype-playground');
 
 
 const WEBPACK_PORT = 5000;
@@ -80,7 +81,18 @@ module.exports = async ({ runningIn, docName, docDir }) => {
         {
           test: /\.mdx?$/,
           exclude: /node_modules/,
-          use: [ { loader: 'babel-loader', options: babelConfig }, '@mdx-js/loader' ],
+          use: [
+            {
+              loader: 'babel-loader',
+              options: babelConfig,
+            },
+            {
+              loader: '@mdx-js/loader',
+              options: {
+                hastPlugins: [ rehypePlayground ],
+              },
+            },
+          ],
         },
       ],
     },
