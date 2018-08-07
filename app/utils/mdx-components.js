@@ -1,8 +1,6 @@
 import styled from 'styled-components';
-import hljs from 'highlightjs';
 
-
-hljs.initHighlightingOnLoad();
+import Editor from './Editor';
 
 
 const H1 = styled.h1`
@@ -28,11 +26,12 @@ const H2 = styled.h2`
 `
 
 
-const Code = styled.code`
+const Code = styled(Editor)`
   border-radius: 5px;
   overflow: hidden;
   padding: 24px 16px !important;
   font-size: 0.9em;
+  height: auto;
 `;
 
 
@@ -40,5 +39,5 @@ export default {
   h1: H1,
   h2: H2,
   p: P,
-  code: Code,
+  code: Editor,
 };

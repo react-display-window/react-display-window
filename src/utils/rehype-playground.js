@@ -21,7 +21,7 @@ function removePlaygroundTag(code) {
 
 
 function format(code) {
-  return prettier.format(code, {
+  const formattedCode = prettier.format(code, {
     parser: 'babylon',
     semi: false,
     singleQuote: true,
@@ -30,6 +30,7 @@ function format(code) {
     bracketSpacing: true,
     arrowParens: 'always',
   }).slice(1);
+  return formattedCode.replace(/\s*\/>/, ' />');
 }
 
 

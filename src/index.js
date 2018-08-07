@@ -1,10 +1,11 @@
+require('@babel/polyfill');
 const path = require('path');
 const serve = require('webpack-serve');
 
 const buildConfig = require('../webpack.config.js');
 
 
-export async function main(args={}) {
+module.exports.main = async function main(args={}) {
   const runningIn = process.cwd();
   const { path: docPath } = args;
 

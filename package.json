@@ -52,6 +52,7 @@
     "babel-traverse": "^6.26.0",
     "babylon": "^6.18.0",
     "classnames": "^2.2.6",
+    "codemirror": "^5.39.2",
     "dedent": "^0.7.0",
     "fast-glob": "^2.2.2",
     "fs-extra": "^7.0.0",

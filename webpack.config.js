@@ -32,7 +32,7 @@ module.exports = async ({ runningIn, docName, docDir }) => {
       },
       modules: [
         path.resolve(__dirname, './node_modules'),
-        'node_modules',
+        path.resolve(runningIn, './node_modules'),
       ],
     },
     entry: [
