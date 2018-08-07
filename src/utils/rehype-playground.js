@@ -1,7 +1,6 @@
 const is = require('unist-util-is');
 const nodeToString = require('hast-util-to-string');
 const strip = require('strip-indent');
-const prettier = require('prettier');
 const { flow } = require('lodash');
 
 const codeFromNode = require('./code-from-node');
@@ -20,20 +19,6 @@ function removePlaygroundTag(code) {
 }
 
 
-function format(code) {
-  const formattedCode = prettier.format(code, {
-    parser: 'babylon',
-    semi: false,
-    singleQuote: true,
-    trailingComma: 'all',
-    jsxBracketSameLine: true,
-    bracketSpacing: true,
-    arrowParens: 'always',
-  }).slice(1);
-  return formattedCode.replace(/\s*\/>/, ' />');
-}
-
-
 function trim(arg) {
   return arg.trim();
 }
@@ -46,7 +31,6 @@ function addCodeProp(node, index) {
   if (name === 'PlayGround') {
     const code = flow(
       nodeToString,
-      format,
       removePlaygroundTag,
       strip,
       trim,
