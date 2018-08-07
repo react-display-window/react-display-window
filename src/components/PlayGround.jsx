@@ -9,18 +9,21 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     margin: '30px 0',
-    borderRadius: 5,
-    border: '2px solid rgba(0, 0, 0, 0.5)',
-    overflow: 'hidden',
+    // borderRadius: 5,
+    // border: '2px solid rgba(0, 0, 0, 0.5)',
+    // overflow: 'hidden',
   },
   renderZone: {
     padding: '32px 16px',
+    border: '1px solid rgba(0, 0, 0, 0.4)',
+    borderRadius: '0 0 5px 5px',
   },
   sourceZone: {
     width: '100%',
     margin: 0,
-    borderBottom: '2px solid rgba(0, 0, 0, 0.5)',
-
+    // borderBottom: '2px solid rgba(0, 0, 0, 0.5)',
+    borderRadius: '5px 5px 0 0',
+    overflow: 'hidden',
   },
 });
 
