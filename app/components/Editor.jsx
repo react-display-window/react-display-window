@@ -15,10 +15,9 @@ const styles = StyleSheet.create({
   editor: {
     overflow: 'hidden',
     borderRadius: 5,
-    // border: '2px solid rgba(0, 0, 0, 0.5)',
     '& .CodeMirror': {
       fontFamily: '"Fira Code", "monaco", monospaced',
-      padding: '8px 0',
+      padding: '8px',
       height: 'auto',
       fontSize: '14px !important',
       lineHeight: '1.8',

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import Editor from './Editor';
+import Editor from '../components/Editor';
 
 
 const H1 = styled.h1`
