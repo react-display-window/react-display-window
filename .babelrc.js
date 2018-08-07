@@ -8,4 +8,7 @@ module.exports = {
     }],
     ["@babel/preset-react"],
   ],
+  "plugins": [
+    "@larsbs/babel-plugin-react-docgen",
+  ],
 };
