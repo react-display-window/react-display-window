@@ -9,16 +9,21 @@ const styles = StyleSheet.create({
     width: '100%',
     marginTop: 32,
     marginBottom: 30,
+    border: '1px solid rgba(84, 110, 122, 0.3)',
+    borderRadius: 5,
+    overflow: 'hidden',
   },
   row: {
     width: '100%',
     display: 'flex',
     alignItems: 'center',
-    borderBottom: '1px solid rgba(84, 110, 122, 0.3)',
+    '&:nth-child(odd)': {
+      background: 'rgba(84, 110, 122, 0.03)',
+    }
   },
   cell: {
     flex: 1,
-    padding: '16px 8px',
+    padding: '16px',
     lineHeight: 1.5,
     color: 'rgba(0, 0, 0, 0.7)',
     fontSize: '0.9em',
@@ -28,14 +33,16 @@ const styles = StyleSheet.create({
     flex: 2,
   },
   header: {
-    borderBottomWidth: 3,
+    borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
     fontSize: '0.8em',
     fontWeight: 'bold',
     textTransform: 'uppercase',
     color: 'rgba(0, 0, 0, 0.8)',
+    background: 'rgba(84, 110, 122, 0.1) !important',
   },
   headerCell: {
-
+    padding: '12px 16px',
+    paddingTop: 14,
   },
 });
 
@@ -44,7 +51,6 @@ const PropsTable = ({
   component,
 }) => {
   const props = getProps(component);
-  console.log(props);
   return (
     <div className={css(styles.table)}>
       <div className={css(styles.row, styles.header)}>

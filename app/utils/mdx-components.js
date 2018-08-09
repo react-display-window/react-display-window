@@ -23,12 +23,20 @@ const H2 = styled.h2`
   font-family: 'Bree Serif', serif;
   margin-top: 1.5em;
   margin-bottom: 1em;
-`
+`;
+
+
+const H3 = styled.h3`
+  font-family: 'Bree Serif', serif;
+  margin-top: 1.5em;
+  margin-bottom: 1em;
+`;
 
 
 export default {
   h1: H1,
   h2: H2,
+  h3: H3,
   p: P,
   code: Code,
 };
