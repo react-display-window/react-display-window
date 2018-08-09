@@ -9,6 +9,7 @@ const ansiEscapes = require('ansi-escapes');
 
 const babelConfig = require('../../.babelrc');
 const rehypePlayground = require('./utils/rehype-playground');
+const remarkToc = require('./utils/remark-toc');
 
 
 const WEBPACK_PORT = 5000;
@@ -85,6 +86,7 @@ module.exports = async ({ runningIn, docName, docDir }) => {
             {
               loader: '@mdx-js/loader',
               options: {
+                mdPlugins: [ remarkToc ],
                 hastPlugins: [ rehypePlayground ],
               },
             },
