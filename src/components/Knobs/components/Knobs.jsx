@@ -2,7 +2,7 @@ import React from 'react';
 import merge from 'lodash/merge';
 import { StyleSheet, css } from 'aphrodite-jss';
 
-import { getProps } from '../utils';
+import { getProps } from '../../utils';
 import Prop from './Prop';
 
 
