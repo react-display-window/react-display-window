@@ -12,19 +12,26 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     marginTop: 32,
     marginBottom: 30,
-    border: '1px solid rgba(0, 0, 0, 0.3)',
+    border: '1px solid rgba(84, 110, 122, 0.3)',
     overflow: 'hidden',
     borderRadius: 5,
   },
   renderZone: {
-    background: 'rgba(0, 0, 0, 0.04)',
+    background: 'rgba(84, 110, 122, 0.03)',
     borderLeft: 0,
     borderRight: 0,
     padding: 32,
   },
   knobsZone: {
-    borderTop: '1px solid rgba(0, 0, 0, 0.3)',
+    borderTop: '1px solid rgba(84, 110, 122, 0.3)',
     padding: 32,
+    display: 'flex',
+    flexWrap: 'wrap',
+    margin: '0 -16px',
+  },
+  knob: {
+    width: '50%',
+    padding: '0 16px',
   },
 });
 
@@ -36,23 +43,27 @@ class Knobs extends React.Component {
   };
 
   render() {
-    const { component: Component, defaults } = this.props;
+    const { defaults, children } = this.props;
+    const Component = children.type;
     const componentPropTypes = getProps(Component);
     const { propValues } = this.state;
     const finalProps = merge({}, defaults, propValues);
     return (
       <div className={css(styles.knobs)}>
         <div className={css(styles.renderZone)}>
-          <Component {...finalProps} />
+          {React.cloneElement(children, {
+            ...finalProps,
+          })}
         </div>
         <div className={css(styles.knobsZone)}>
           {Object.keys(componentPropTypes).map((key) => (
-            <Prop
-              key={key}
-              name={key}
-              prop={componentPropTypes[key]}
-              value={finalProps[key]}
-              onChange={(v, n) => this.setState({ propValues: { ...propValues, [n]: v } })} />
+            <div key={key} className={css(styles.knob)}>
+              <Prop
+                name={key}
+                prop={componentPropTypes[key]}
+                value={finalProps[key]}
+                onChange={(v, n) => this.setState({ propValues: { ...propValues, [n]: v } })} />
+            </div>
           ))}
         </div>
       </div>

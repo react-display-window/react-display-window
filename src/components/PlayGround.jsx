@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   },
   renderZone: {
     padding: 32,
-    border: '1px solid rgba(0, 0, 0, 0.3)',
+    border: '1px solid rgba(84, 110, 122, 0.3)',
     borderRadius: '0 0 5px 5px',
   },
   sourceZone: {
