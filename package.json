@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "7.0.0-beta.51",
+    "@drawbotics/logger": "^1.0.3",
     "@mdx-js/mdx": "^0.15.0-2",
     "ansi-escapes": "^3.1.0",
     "aphrodite-jss": "^2.1.0",
@@ -43,6 +44,7 @@
     "babylon": "^6.18.0",
     "classnames": "^2.2.6",
     "codemirror": "^5.39.2",
+    "fs-extra": "^7.0.0",
     "hast-util-to-string": "^1.0.1",
     "lodash": "^4.17.10",
     "mdast-util-toc": "^2.0.1",
@@ -55,6 +57,9 @@
     "strip-indent": "^2.0.0",
     "styled-components": "^3.3.3",
     "unified": "^7.0.0",
+    "unist-util-filter": "^1.0.0",
+    "unist-util-find": "^1.0.1",
+    "unist-util-visit": "^1.4.0",
     "webpack-serve": "^2.0.2"
   }
 }

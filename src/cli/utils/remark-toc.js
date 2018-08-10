@@ -1,30 +1,39 @@
-const utilToc = require('mdast-util-toc');
+// const utilToc = require('mdast-util-toc');
+const logger = require('@drawbotics/logger');
+// const filter = require('unist-util-filter');
+const is = require('unist-util-is');
+const visit = require('unist-util-visit');
+const find = require('unist-util-find');
+const fs = require('fs-extra');
 
 
-// Sample entries
-const entries = [
-  { title: 'Drawbotics Button' },
-  { entries: [
-    { title: 'Installation' },
-    { title: 'Example' },
-    { title: 'Props' },
-    { entries: [
-      { title: 'Table' },
-      { title: 'Knobs' },
-    ]},
-  ]},
-];
+function getTitle(heading) {
+  const text = find(heading, (n) => is('text', n));
+  return text ? text.value : null;
+}
+
+
+function buildEntries(headings, depth) {
+  return headings.map((heading) => {
+    if (heading.depth === depth) {
+      heading.done = null;  // mark it as done
+      return { title: getTitle(heading) };
+    }
+    else if (heading.depth > depth) {
+      return { entries: buildEntries(headings, heading.depth) };
+    }
+    else {
+      return null;
+    }
+  }).filter(Boolean);
+}
 
 
 module.exports = function toc() {
   return (tree) => {
-    const result = utilToc(tree, { maxDepth: 3, tight: true });
-    const entries = [];
+    const headings = [];
+    visit(tree, 'heading', (n) => headings.includes(n) ? null : headings.push(n));
 
-    const { map } = result;
-    map.children.forEach((child) => {
-
-    });
-    console.log(JSON.stringify(result, null, 2));
+    const entries = buildEntries(headings, 1);
   }
 }
