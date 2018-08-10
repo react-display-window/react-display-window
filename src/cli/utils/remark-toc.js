@@ -15,8 +15,11 @@ function getTitle(heading) {
 
 function buildEntries(headings, depth) {
   return headings.map((heading) => {
-    if (heading.depth === depth) {
-      heading.done = null;  // mark it as done
+    if (heading.__done) {
+      return null;
+    }
+    else if (heading.depth === depth) {
+      heading.__done = true;  // mark it as done
       return { title: getTitle(heading) };
     }
     else if (heading.depth > depth) {
@@ -35,5 +38,11 @@ module.exports = function toc() {
     visit(tree, 'heading', (n) => headings.includes(n) ? null : headings.push(n));
 
     const entries = buildEntries(headings, 1);
+    console.log(entries);
+    const tocNode = visit(tree, (node) => {
+      if (is('html', node) && node.value.match(/<Toc\s/)) {
+        node.value = node.value.replace(/<Toc\s/, `<Toc __entries={${JSON.stringify(entries)}} `);
+      }
+    });
   }
 }

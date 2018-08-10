@@ -23,21 +23,34 @@ const styles = StyleSheet.create({
 });
 
 
-const Toc = () => {
+const Entries = ({
+  entries,
+}) => {
+  return (
+    <div className={css(styles.entries)}>
+      {entries.map((entry) => {
+        if (entry.title) {
+          return (
+            <div className={css(styles.entry)}> › &nbsp;{entry.title}</div>
+          );
+        }
+        else if (entry.entries) {
+          return (
+            <Entries entries={entry.entries} />
+          );
+        }
+      })}
+    </div>
+  );
+};
+
+
+const Toc = ({
+  __entries,
+}) => {
   return (
     <div className={css(styles.toc)}>
-      <div className={css(styles.entries)}>
-        <div className={css(styles.entry)}> › &nbsp;Drawbotics Button</div>
-        <div className={css(styles.entries)}>
-          <div className={css(styles.entry)}> › &nbsp;Installation</div>
-          <div className={css(styles.entry)}> › &nbsp;Example</div>
-          <div className={css(styles.entry)}> › &nbsp;Props</div>
-          <div className={css(styles.entries)}>
-            <div className={css(styles.entry)}> › &nbsp;Table</div>
-            <div className={css(styles.entry)}> › &nbsp;Knobs</div>
-          </div>
-        </div>
-      </div>
+      <Entries entries={__entries} />
     </div>
   );
 };
