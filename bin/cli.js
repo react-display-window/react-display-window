@@ -6,7 +6,11 @@ const { main } = require('../lib/cli');
 
 const cli = meow(`
   Usage
-    $ rdw [path]
+    $ rdw <command> <path>
+
+  Input
+    command: Can be "build" to build a static site or "serve" to serve it from memory
+    path: Path to the mdx file
 
   Options
     --out-dir, -o Where to output the files when building
@@ -20,8 +24,9 @@ const cli = meow(`
 
 
 async function run() {
-  const [ path ] = cli.input;
-  await main({ path });
+  const [ command, path ] = cli.input;
+  const { outDir } = cli.flags;
+  await main({ path, command, outDir });
 }
 
 

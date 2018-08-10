@@ -5,9 +5,19 @@ const serve = require('webpack-serve');
 const buildConfig = require('./webpack.config.js');
 
 
+function runServe(config) {
+  serve({}, { config });
+}
+
+
+function runBuild(config, outDir) {
+
+}
+
+
 module.exports.main = async function main(args={}) {
   const runningIn = process.cwd();
-  const { path: docPath } = args;
+  const { path: docPath, command, outDir } = args;
 
   const finalDocPath = path.resolve(runningIn, docPath);
   const docName = path.basename(finalDocPath);
@@ -16,5 +26,10 @@ module.exports.main = async function main(args={}) {
   process.chdir(path.resolve(__dirname, '../../'));
 
   const config = await buildConfig({ runningIn, docName, docDir });
-  serve({}, { config });
+  if (command === 'serve') {
+    runServe(config);
+  }
+  else if (command === 'build') {
+    runBuild(config, outDir);
+  }
 }
