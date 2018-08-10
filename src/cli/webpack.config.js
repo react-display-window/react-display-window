@@ -6,6 +6,7 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const chalk = require('chalk');
 const figures = require('figures');
 const ansiEscapes = require('ansi-escapes');
+const remarkSlug = require('remark-slug');
 
 const babelConfig = require('../../.babelrc');
 const rehypePlayground = require('./utils/rehype-playground');
@@ -86,7 +87,7 @@ module.exports = async ({ runningIn, docName, docDir }) => {
             {
               loader: '@mdx-js/loader',
               options: {
-                mdPlugins: [ remarkToc ],
+                mdPlugins: [ remarkSlug, remarkToc ],
                 hastPlugins: [ rehypePlayground ],
               },
             },

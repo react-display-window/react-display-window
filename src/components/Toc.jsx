@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
     paddingLeft: 24,
   },
   entry: {
+    display: 'block',
     marginBottom: 12,
     cursor: 'pointer',
     color: '#1976D2',
@@ -31,12 +32,14 @@ const Entries = ({
       {entries.map((entry) => {
         if (entry.title) {
           return (
-            <div className={css(styles.entry)}> › &nbsp;{entry.title}</div>
+            <a key={entry.title} className={css(styles.entry)} href={`#${entry.url}`}>
+              › &nbsp;{entry.title}
+            </a>
           );
         }
         else if (entry.entries) {
           return (
-            <Entries entries={entry.entries} />
+            <Entries key={entries} entries={entry.entries} />
           );
         }
       })}
