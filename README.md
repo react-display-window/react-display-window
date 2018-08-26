@@ -1,3 +1,6 @@
+![](assets/side-by-side.png)
+
+
 # React Display Window
 
 React Display Window is a simple tool to write documentation for when having a full guide is overkill. React Display Window is therefore best suited for one component libraries or libraries where all of the components are related.
@@ -20,7 +23,7 @@ First we create an `.mdx` file which would contain the documentation of the proj
 ```md
 // my-component.mdx
 
-import { PlayGround, Knobs } from 'react-display-window';
+import { PlayGround, Knobs, PropsTable } from 'react-display-window/lib/components';
 import Button from './src';
 
 # Button
@@ -90,7 +93,7 @@ An example repo can be found at [Drawbotics/button](https://github.com/Drawbotic
 A component that will render all the headers inside the file as a table of contents with links to specific sections.
 
 ```jsx
-import { Toc } from 'react-display-window';
+import { Toc } from 'react-display-window/lib/components';
 
 <Toc />
 ```
@@ -100,7 +103,7 @@ import { Toc } from 'react-display-window';
 A component that will render `children` and will also display the code used.
 
 ```jsx
-import { PlayGround } from 'react-display-window';
+import { PlayGround } from 'react-display-window/lib/components';
 import MyComponent from './src';
 
 <PlayGround>
@@ -113,7 +116,7 @@ import MyComponent from './src';
 A component that will render a table with all the `propTypes` the component passed accepts.
 
 ```jsx
-import { PropsTable } from 'react-display-window';
+import { PropsTable } from 'react-display-window/lib/components';
 import MyComponent from './src';
 
 <PropsTable component={MyComponent} />
@@ -124,7 +127,7 @@ import MyComponent from './src';
 Similar to playground in that it renders it's `children` but instead of showing the code used, it will display some controls to manipulate in real time the props that component accepts. It also takes a `defaults` props where default values for the props can be specified.
 
 ```jsx
-import { Knobs } from 'react-display-window';
+import { Knobs } from 'react-display-window/lib/components';
 import MyComponent from './src';
 
 <Knobs component={MyComponent} defaults={{ myProp: true }}>
