@@ -1,13 +1,14 @@
 {
   "name": "react-display-window",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple tool to showcase react components",
   "author": "Lorenzo Ruiz <lars.bs@hotmail.com>",
   "license": "MIT",
   "main": "dist/rdw.js",
   "scripts": {
     "clean": "rimraf dist/",
-    "build": "babel src --out-dir lib"
+    "build": "babel src --out-dir lib",
+    "prepublishOnly": "npm run clean && npm run build"
   },
   "bin": {
     "rdw": "bin/cli.js"
