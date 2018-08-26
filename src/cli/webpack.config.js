@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HTMLPlugin = require('html-webpack-plugin');
 const initialMessage = require('initial-app-message');
-const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const betterWebpackProgress = require('better-webpack-progress');
 const chalk = require('chalk');
 const figures = require('figures');
 const ansiEscapes = require('ansi-escapes');
@@ -54,16 +54,13 @@ module.exports = async ({ runningIn, docName, docDir }) => {
         filename: 'index.html',
         template: path.resolve(__dirname, '../../app/index.html'),
       }),
-      new ProgressBarPlugin({
-        incomplete: grey('─'),
-        complete: green('═'),
-        format: `${bold('Building')}  :bar  ${green(':percent')} ${grey(figures.arrowRight + ' :msg')}`,
-        summary: false,
+      new webpack.ProgressPlugin(betterWebpackProgress({
+        mode: 'bar',
         customSummary: () => {
           process.stdout.write(ansiEscapes.clearScreen);
           process.stdout.write(initialMessage(WEBPACK_PORT, []).join('\n'));
         },
-      }),
+      })),
     ],
     module: {
       rules: [
