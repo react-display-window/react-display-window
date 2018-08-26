@@ -39,7 +39,7 @@ module.exports = async ({ runningIn, docName, docDir, outDir }) => {
     ],
     output: {
       path: outDir != null ? outDir : path.resolve(__dirname, 'dist'),
-      publicPath: '/',
+      publicPath: '',
       filename: 'rdw.js',
       sourceMapFilename: 'rdw.js.map',
     },

@@ -1,7 +1,7 @@
 {
   "name": "react-display-window",
   "version": "1.0.0",
-  "description": "A simple react component showcase",
+  "description": "A simple tool to showcase react components",
   "author": "Lorenzo Ruiz <lars.bs@hotmail.com>",
   "license": "MIT",
   "main": "dist/rdw.js",
