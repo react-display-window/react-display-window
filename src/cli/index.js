@@ -1,6 +1,8 @@
 require('@babel/polyfill');
+
 const path = require('path');
 const serve = require('webpack-serve');
+const webpack = require('webpack');
 
 const buildConfig = require('./webpack.config.js');
 
@@ -11,7 +13,12 @@ function runServe(config) {
 
 
 function runBuild(config, outDir) {
-
+  const compiler = webpack(config);
+  compiler.run((err, stats) => {
+    if (err) {
+      throw new Error(err);
+    }
+  });
 }
 
 
@@ -25,11 +32,14 @@ module.exports.main = async function main(args={}) {
 
   process.chdir(path.resolve(__dirname, '../../'));
 
-  const config = await buildConfig({ runningIn, docName, docDir });
+
   if (command === 'serve') {
+    const config = await buildConfig({ runningIn, docName, docDir });
     runServe(config);
   }
   else if (command === 'build') {
-    runBuild(config, outDir);
+    const output = path.resolve(runningIn, outDir);
+    const config = await buildConfig({ runningIn, docName, docDir, outDir: output });
+    runBuild(config, output);
   }
 }

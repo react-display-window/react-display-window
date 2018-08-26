@@ -16,7 +16,7 @@ const remarkToc = require('./utils/remark-toc');
 const WEBPACK_PORT = 5000;
 
 
-module.exports = async ({ runningIn, docName, docDir }) => {
+module.exports = async ({ runningIn, docName, docDir, outDir }) => {
   const { green, grey, bold } = chalk;
   console.log(bold('Starting webpack...'));
   return {
@@ -38,7 +38,7 @@ module.exports = async ({ runningIn, docName, docDir }) => {
       path.join(__dirname, '../../app/index.js'),
     ],
     output: {
-      path: path.resolve(__dirname, 'dist'),
+      path: outDir != null ? outDir : path.resolve(__dirname, 'dist'),
       publicPath: '/',
       filename: 'rdw.js',
       sourceMapFilename: 'rdw.js.map',
@@ -57,8 +57,13 @@ module.exports = async ({ runningIn, docName, docDir }) => {
       new webpack.ProgressPlugin(betterWebpackProgress({
         mode: 'bar',
         customSummary: () => {
-          process.stdout.write(ansiEscapes.clearScreen);
-          process.stdout.write(initialMessage(WEBPACK_PORT, []).join('\n'));
+          if (outDir != null) {
+            console.log(chalk.bold('Finished'), chalk.green('✔︎'));
+          }
+          else {
+            process.stdout.write(ansiEscapes.clearScreen);
+            process.stdout.write(initialMessage(WEBPACK_PORT, []).join('\n'));
+          }
         },
       })),
     ],
