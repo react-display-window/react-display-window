@@ -8,7 +8,7 @@ React Display Window is a simple tool to write documentation for when having a f
 It's also very useful during the development stage of these components libraries because it allows you to see the code working and running like in a real usage environment.
 
 
-# Installation
+## Installation
 
 Install it as any other dev dependency in your repo:
 
@@ -16,7 +16,7 @@ Install it as any other dev dependency in your repo:
 $ npm install --development react-display-window
 ```
 
-# Usage
+## Usage
 
 First we create an `.mdx` file which would contain the documentation of the project. You can use React and markdown inside this file.
 
@@ -81,14 +81,14 @@ npx rdw build my-component --out-dir docs/
 And this will build your documentation and make it available in the folder specified. After, you can deploy it using github pages or any other static provider.
 
 
-# Example
+##Example
 
 An example repo can be found at [Drawbotics/button](https://github.com/Drawbotics/button)
 
 
-# Components
+## Components
 
-## TOC
+### TOC
 
 A component that will render all the headers inside the file as a table of contents with links to specific sections.
 
@@ -98,7 +98,7 @@ import { Toc } from 'react-display-window/lib/components';
 <Toc />
 ```
 
-## PlayGround
+### PlayGround
 
 A component that will render `children` and will also display the code used.
 
@@ -111,7 +111,7 @@ import MyComponent from './src';
 </PlayGround>
 ```
 
-## PropsTable
+### PropsTable
 
 A component that will render a table with all the `propTypes` the component passed accepts.
 
@@ -122,7 +122,7 @@ import MyComponent from './src';
 <PropsTable component={MyComponent} />
 ```
 
-## Knobs
+### Knobs
 
 Similar to playground in that it renders it's `children` but instead of showing the code used, it will display some controls to manipulate in real time the props that component accepts. It also takes a `defaults` props where default values for the props can be specified.
 
@@ -136,9 +136,9 @@ import MyComponent from './src';
 ```
 
 
-# Common Patterns
+## Common Patterns
 
-## Add a custom title and dependencies
+### Add a custom title and dependencies
 
 Since we can use React inside our doc file, adding a custom title or dependencies is as simple as installing [`react-helmet`](https://github.com/nfl/react-helmet) and using it at the top of our docs:
 
@@ -151,19 +151,19 @@ import { Helmet } from 'react-helmet';
 </Helmet>
 ```
 
-# Contributing
+## Contributing
 
 Everyone is welcome to contribute with issues, feature requests or pull requests.
 
 
-# Planned
+## Planned
 
 - [ ] Custom themes
 - [ ] Editable PlayGround component
 - [ ] Support for more prop types in Knobs component
 
 
-# Sponsors
+## Sponsors
 
 Sponsored by:
 
@@ -171,6 +171,6 @@ Sponsored by:
   <img src="https://www.drawbotics.com/assets/press/logo/Icon-Drawbotics-Triangle-b97ecbcb97d8e7caa1f0a0a9166af407bbe9d0280e73b33b9e9ebdd23c11371b.png" width="60">
 </a>
 
-# License
+## License
 
 [MIT](LICENSE)
