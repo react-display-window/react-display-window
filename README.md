@@ -98,6 +98,9 @@ import { Toc } from 'react-display-window/lib/components';
 <Toc />
 ```
 
+![](assets/toc.png)
+
+
 ### PlayGround
 
 A component that will render `children` and will also display the code used.
@@ -111,6 +114,9 @@ import MyComponent from './src';
 </PlayGround>
 ```
 
+![](assets/playground.png)
+
+
 ### PropsTable
 
 A component that will render a table with all the `propTypes` the passed component accepts.
@@ -121,6 +127,9 @@ import MyComponent from './src';
 
 <PropsTable component={MyComponent} />
 ```
+
+![](assets/propstable.png)
+
 
 ### Knobs
 
@@ -134,6 +143,9 @@ import MyComponent from './src';
   <MyComponent />
 </Knobs>
 ```
+
+![](assets/knobs.png)
+
 
 
 ## Common Patterns
