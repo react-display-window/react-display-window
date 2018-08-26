@@ -17,7 +17,7 @@ $ npm install --development react-display-window
 
 First we create an `.mdx` file which would contain the documentation of the project. You can use React and markdown inside this file.
 
-```mdx
+```md
 // my-component.mdx
 
 import { PlayGround, Knobs } from 'react-display-window';
