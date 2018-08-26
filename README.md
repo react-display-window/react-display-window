@@ -81,7 +81,7 @@ npx rdw build my-component --out-dir docs/
 And this will build your documentation and make it available in the folder specified. After, you can deploy it using github pages or any other static provider.
 
 
-##Example
+## Example
 
 An example repo can be found at [Drawbotics/button](https://github.com/Drawbotics/button)
 
@@ -113,7 +113,7 @@ import MyComponent from './src';
 
 ### PropsTable
 
-A component that will render a table with all the `propTypes` the component passed accepts.
+A component that will render a table with all the `propTypes` the passed component accepts.
 
 ```jsx
 import { PropsTable } from 'react-display-window/lib/components';
