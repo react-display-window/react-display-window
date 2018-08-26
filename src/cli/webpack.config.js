@@ -71,7 +71,7 @@ module.exports = async ({ runningIn, docName, docDir, outDir }) => {
       rules: [
         {
           test: /\.jsx?$/,
-          exclude: /node_modules/,
+          exclude: /node_modules\/(?!(react-display-window\/app)\/).*/,
           use: [ { loader: 'babel-loader', options: babelConfig } ],
         },
         {
