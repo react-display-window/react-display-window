@@ -59,13 +59,13 @@ This will render the component and some controllers to edit it's props in real t
 </Knobs>
 ```
 
-Now, we just have to run React Display Window and point it to our file:
+Next, we just have to run React Display Window and point it to our file:
 
 ```bash
 npx rdw serve my-component.mdx
 ```
 
-And that's it. You can now go to the url display in your console a have a look at your newly created display window for your component.
+And that's it. You can now go to the url displayed in your console and have a look at your newly created display window for your component.
 
 ![](assets/frame.png)
 
@@ -75,7 +75,89 @@ Once you're happy with your documentation, you can run:
 npx rdw build my-component --out-dir docs/
 ```
 
-And this will build your documentation and make it available in the folder specified. Then, you can deploy it using github pages or any other static provider.
+And this will build your documentation and make it available in the folder specified. After, you can deploy it using github pages or any other static provider.
+
+
+# Example
+
+An example repo can be found at [Drawbotics/button](https://github.com/Drawbotics/button)
+
+
+# Components
+
+## TOC
+
+A component that will render all the headers inside the file as a table of contents with links to specific sections.
+
+```jsx
+import { Toc } from 'react-display-window';
+
+<Toc />
+```
+
+## PlayGround
+
+A component that will render `children` and will also display the code used.
+
+```jsx
+import { PlayGround } from 'react-display-window';
+import MyComponent from './src';
+
+<PlayGround>
+  <MyComponent />
+</PlayGround>
+```
+
+## PropsTable
+
+A component that will render a table with all the `propTypes` the component passed accepts.
+
+```jsx
+import { PropsTable } from 'react-display-window';
+import MyComponent from './src';
+
+<PropsTable component={MyComponent} />
+```
+
+## Knobs
+
+Similar to playground in that it renders it's `children` but instead of showing the code used, it will display some controls to manipulate in real time the props that component accepts. It also takes a `defaults` props where default values for the props can be specified.
+
+```jsx
+import { Knobs } from 'react-display-window';
+import MyComponent from './src';
+
+<Knobs component={MyComponent} defaults={{ myProp: true }}>
+  <MyComponent />
+</Knobs>
+```
+
+
+# Common Patterns
+
+## Add a custom title and dependencies
+
+Since we can use React inside our doc file, adding a custom title or dependencies is as simple as installing [`react-helmet`](https://github.com/nfl/react-helmet) and using it at the top of our docs:
+
+```jsx
+import { Helmet } from 'react-helmet';
+
+<Helmet>
+  <title>My Custom Title</title>
+  <link rel="stylesheet" href="http://link-to/my-custom.css" />
+</Helmet>
+```
+
+# Contributing
+
+Everyone is welcome to contribute with issues, feature requests or pull requests.
+
+
+# Planned
+
+- [ ] Custom themes
+- [ ] Editable PlayGround component
+- [ ] Support for more prop types in Knobs component
 
 
 # Sponsors
