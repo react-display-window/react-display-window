@@ -45,7 +45,7 @@ This will render the component and the code.
 
 ### PropsTable
 
-This will documemt all the props the component accepts.
+This will document all the props the component accepts.
 
 <PropsTable component={Button} />
 
