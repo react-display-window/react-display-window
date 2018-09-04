@@ -24,7 +24,7 @@ function runBuild(config, outDir) {
 
 module.exports.main = async function main(args={}) {
   const runningIn = process.cwd();
-  const { path: docPath, command, outDir } = args;
+  const { path: docPath, command, outDir, port } = args;
 
   const finalDocPath = path.resolve(runningIn, docPath);
   const docName = path.basename(finalDocPath);
@@ -34,7 +34,7 @@ module.exports.main = async function main(args={}) {
 
 
   if (command === 'serve') {
-    const config = await buildConfig({ runningIn, docName, docDir });
+    const config = await buildConfig({ runningIn, docName, docDir, port });
     runServe(config);
   }
   else if (command === 'build') {
