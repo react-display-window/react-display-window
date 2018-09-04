@@ -1,7 +1,9 @@
-![](assets/side-by-side.png)
+![](assets/logo-large.png)
 
 
 # React Display Window
+
+![](assets/preview.gif)
 
 React Display Window is a simple tool to write documentation for when having a full guide is overkill. React Display Window is therefore best suited for one component libraries or libraries where all of the components are related.
 
@@ -184,5 +186,7 @@ Sponsored by:
 </a>
 
 ## License
+
+Logo by [nicmosc](https://github.com/nicmosc)
 
 [MIT](LICENSE)
