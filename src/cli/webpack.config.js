@@ -59,7 +59,7 @@ module.exports = async ({ runningIn, docName, docDir, outDir, port=5000 }) => {
           }
           else {
             process.stdout.write(ansiEscapes.clearScreen);
-            process.stdout.write(initialMessage(WEBPACK_PORT, []).join('\n'));
+            process.stdout.write(initialMessage(port, []).join('\n'));
           }
         },
       })),
