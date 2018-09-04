@@ -1,4 +1,6 @@
-![](assets/logo-large.png)
+<div align="center" markdown="1">
+<img src="https://raw.githubusercontent.com/react-display-window/react-display-window/master/assets/logo-large.png" height="200px">
+</div>
 
 
 # React Display Window
