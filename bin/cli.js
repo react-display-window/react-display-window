@@ -14,6 +14,7 @@ const cli = meow(`
 
   Options
     --out-dir, -o Where to output the files when building
+    --port, -p Where the "serve" will serve the demo page
     --help Show this help
 
   Examples
@@ -25,8 +26,8 @@ const cli = meow(`
 
 async function run() {
   const [ command, path ] = cli.input;
-  const { outDir } = cli.flags;
-  await main({ path, command, outDir });
+  const { outDir, port } = cli.flags;
+  await main({ path, command, outDir, port });
 }
 
 

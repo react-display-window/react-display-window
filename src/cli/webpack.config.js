@@ -13,10 +13,7 @@ const rehypePlayground = require('./utils/rehype-playground');
 const remarkToc = require('./utils/remark-toc');
 
 
-const WEBPACK_PORT = 5000;
-
-
-module.exports = async ({ runningIn, docName, docDir, outDir }) => {
+module.exports = async ({ runningIn, docName, docDir, outDir, port=5000 }) => {
   const { green, grey, bold } = chalk;
   console.log(bold('Starting webpack...'));
   return {
@@ -99,7 +96,7 @@ module.exports = async ({ runningIn, docName, docDir, outDir }) => {
     },
     serve: {
       host: '0.0.0.0',
-      port: WEBPACK_PORT,
+      port: port,
       logLevel: 'error',
       stats: 'errors-only',
       devMiddleware: {
