@@ -5,6 +5,10 @@
   "author": "Lorenzo Ruiz <lars.bs@hotmail.com>",
   "license": "MIT",
   "main": "dist/rdw.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/react-display-window/react-display-window.git"
+  },
   "scripts": {
     "clean": "rimraf dist/",
     "build": "babel src --out-dir lib",
