@@ -1,6 +1,6 @@
 {
   "name": "react-display-window",
-  "version": "1.1.2",
+  "version": "2.0.0",
   "description": "A simple tool to showcase react components",
   "author": "Lorenzo Ruiz <lars.bs@hotmail.com>",
   "license": "MIT",
@@ -21,10 +21,10 @@
   "dependencies": {
     "@babel/cli": "^7.0.0-beta.51",
     "@babel/core": "7.0.0-beta.51",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
     "@babel/polyfill": "7.0.0-beta.51",
     "@babel/preset-env": "7.0.0-beta.51",
     "@babel/preset-react": "7.0.0-beta.51",
-    "@babel/preset-stage-0": "7.0.0-beta.51",
     "@drawbotics/check-env": "1.0.0",
     "@drawbotics/logger": "^1.0.3",
     "@larsbs/babel-plugin-react-docgen": "^2.0.0-rc.1",
