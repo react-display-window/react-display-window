@@ -26,13 +26,26 @@ const styles = StyleSheet.create({
 });
 
 
+function getMode(className) {
+  if (className == null) {
+    return null;
+  }
+  else if (className === 'language-js') {
+    return 'javascript';
+  }
+  else {
+    return className.replace('language-', '');
+  }
+}
+
+
 class Code extends React.Component {
 
   componentDidMount() {
-    const { children } = this.props;
+    const { children, className } = this.props;
     this.code = CodeMirror.fromTextArea(this.textarea, {
       lineNumbers: false,
-      mode: 'bash',
+      mode: getMode(className),
       theme: 'material',
       readOnly: 'nocursor',
     });
