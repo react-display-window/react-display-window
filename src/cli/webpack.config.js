@@ -76,6 +76,10 @@ module.exports = async ({ runningIn, docName, docDir, outDir, port=5000 }) => {
           use: [ 'style-loader', 'css-loader' ],
         },
         {
+          test: /\.(jpg|png|svg|pdf)$/,
+          use: [ 'file-loader' ],
+        },
+        {
           test: /\.mdx?$/,
           exclude: /node_modules/,
           use: [
